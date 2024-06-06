@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import ToastProvider from '@/components/providers/toaster-provider';
 
+import { ruRU } from "@clerk/localizations";
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     
-    <ClerkProvider>
+    <ClerkProvider localization={ruRU}>
       
       <html lang="ru">
         <body className={inter.className}>

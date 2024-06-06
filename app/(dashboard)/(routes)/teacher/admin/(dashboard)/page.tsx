@@ -1,9 +1,15 @@
-import { UserButton } from '@clerk/nextjs';
+// pages/users.tsx
+import React from 'react';
+import UserTable from './UserTable';
+// import UserTable from './UserTable';
 
-export default function Home() {
+
+const UsersPage: React.FC = () => {
   return (
-    <div>
-      Таблица
+    <div className='p-4'>
+      <UserTable />
     </div>
   );
-}
+};
+
+export default UsersPage;
