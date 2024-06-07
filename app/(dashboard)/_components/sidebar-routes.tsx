@@ -19,7 +19,7 @@ const guestRoutes = [
   {
     icon: NotebookText,
     label: 'Заметки',
-    href: '/notion',
+    href: '/documents',
   },
   {
     icon: ClipboardPenLine,
@@ -38,16 +38,6 @@ const teacherRoutes = [
     icon: Laptop,
     label: 'Практические',
     href: '/teacher/labs',
-  },
-  {
-    icon: BarChart,
-    label: 'Аналитика',
-    href: '/teacher/analytics',
-  },
-  {
-    icon: NotebookText,
-    label: 'Заметки',
-    href: '/notion',
   },
   {
     icon: UserRoundCog,

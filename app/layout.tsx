@@ -5,6 +5,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import ToastProvider from '@/components/providers/toaster-provider';
 
 import { ruRU } from "@clerk/localizations";
+import { ConvexClientProvider } from '@/components/providers/convex-provider';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,10 +23,11 @@ export default function RootLayout({
   return (
     
     <ClerkProvider localization={ruRU}>
-      
+
       <html lang="ru">
         <body className={inter.className}>
           <ToastProvider />
+          <Toaster position="bottom-center" />
           {children}
         </body>
         
