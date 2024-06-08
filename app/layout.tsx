@@ -1,12 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider,  useAuth  } from '@clerk/nextjs';
 import ToastProvider from '@/components/providers/toaster-provider';
 
 import { ruRU } from "@clerk/localizations";
 import { ConvexClientProvider } from '@/components/providers/convex-provider';
 import { Toaster } from 'sonner';
+import { ConvexProviderWithClerk } from "convex/react-clerk";
+import { ConvexReactClient } from "convex/react";
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,9 +29,11 @@ export default function RootLayout({
 
       <html lang="ru">
         <body className={inter.className}>
+        <ConvexClientProvider >
           <ToastProvider />
           <Toaster position="bottom-center" />
           {children}
+          </ConvexClientProvider>
         </body>
         
       </html>
