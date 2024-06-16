@@ -85,7 +85,7 @@ const CourseIdPage = async ({
       <div  className='flex items-center justify-between'>
         <div className='flex flex-col gap-y-2'>
           <h1 className='text-2xl font-medium'>
-            Настройка лекции
+            Настройка практической работы
           </h1>
           <span className='text-sm  text-slate-700'>
             Заполните все поля  {completionText}
@@ -104,7 +104,7 @@ const CourseIdPage = async ({
           <div className='flex items-center gap-x-2'>
           <IconBadge icon={FolderPen}/>
             <h2 className='text-xl'>
-              Редактирование лекции
+              Редактирование практической работы
             </h2>
           </div>
           <TitleForm
@@ -134,7 +134,7 @@ const CourseIdPage = async ({
             <div className='flex items-center gap-x-2'>
               <IconBadge icon={ListChecks} />
               <h2 className='text-xl'>
-                Главы лекции
+                Задания
               </h2>
             </div>
 

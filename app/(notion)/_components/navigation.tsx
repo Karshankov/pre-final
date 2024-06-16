@@ -3,22 +3,17 @@
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
-import { useMutation } from "convex/react";
-import { ChevronsLeft, LogOut, MenuIcon, PlusCircle, Search } from "lucide-react";
+import { useQuery } from "convex/react";
+import { ChevronsLeft, LogOut, MenuIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import {useMediaQuery} from "usehooks-ts"
-import { UserItem } from "./user-item";
-import { Item } from "./item";
-import { toast } from "sonner";
-import { DocumentList } from "./document-list";
 
 export const Navigation = () => {
-    const router = useRouter();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
-    const create = useMutation(api.documents.create);
+    const documents = useQuery(api.documents.get);
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -102,17 +97,6 @@ export const Navigation = () => {
         }
       }
 
-      const handleCreate = () => {
-        const promise = create({ title: "Без названия" })
-          // .then((documentId) => router.push(`/documents/${documentId}`))
-    
-        toast.promise(promise, {
-          loading: "Создание новой заметки...",
-          success: "Новая заметка создана!",
-          error: "Ошибка создания заметки"
-        });
-      };
-
     return(
         <>
         <aside
@@ -134,8 +118,8 @@ export const Navigation = () => {
                 <ChevronsLeft className="h-6 w-6"/>
             </div>
 
-            <div >
-            <Link href="/" className="mt-5">
+            <div>
+            <Link href="/">
               <Button size="sm" variant="ghost">
                 <LogOut className="h-4 w-4 mr-2" />
                 Выйти из заметок
@@ -143,23 +127,12 @@ export const Navigation = () => {
             </Link>
             </div>
 
-            <div>
-            <UserItem />
-            <Item 
-            label="Поиск"
-            icon={Search}
-            isSearch
-            onClick={() => {}}
-            />
-            <Item 
-              onClick={handleCreate}
-              label="Новая заметка"
-              icon={PlusCircle}
-            />
-            </div>
-            
             <div className="mt-4">
-                <DocumentList />
+                {documents?.map((document) => (
+                  <p key={document._id}>
+                    {document.title}
+                  </p>
+                ))}
             </div>
 
             <div 

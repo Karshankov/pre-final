@@ -1,9 +1,8 @@
 export default {
     providers: [
-    {
-        domain: "https://darling-peacock-93.clerk.accounts.dev",
+      {
+        domain: process.env.CLERK_JWT_ISSUER_DOMAIN,
         applicationID: "convex",
-        
-    }
-]
-}
+      },
+    ],
+  };

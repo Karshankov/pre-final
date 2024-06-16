@@ -62,11 +62,11 @@ const ChapterIdPage = async({
         className="flex items-center text-sm hover:opacity-75 transition mb-6"
         >
         <ArrowLeft className="h-4 w-4 mr-2" />
-        Вернуться к настройке лекции
+        Вернуться к настройке практической работы
         </Link>
         <div className="flex items-center justify-between">
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-2xl font-medium">Создание главы</h1>
+                <h1 className="text-2xl font-medium">Создание задания</h1>
                 <span className="text-sm text-slate-700">
                   Заполните все поля {completionText}
                 </span>
@@ -87,7 +87,7 @@ const ChapterIdPage = async({
             <div className="flex items-center gap-x-2">
                 <IconBadge icon={LayoutDashboard}/>
                 <h2 className="text-xl">
-                   Заполнение главы 
+                   Заполнение задания 
                 </h2>
             </div>
             <ChapterTitleForm 

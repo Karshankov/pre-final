@@ -1,0 +1,27 @@
+import TelegramBot from 'node-telegram-bot-api';
+
+const token = env.telegram
+const bot = new TelegramBot(token, { polling: false });
+
+export default function MyPage() {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      // Отправка данных в Telegram
+      await bot.sendMessage(chatId, JSON.stringify(data));
+      console.log('Data sent to Telegram');
+    } catch (error) {
+      console.error('Error sending data to Telegram:', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+  
+      <button type="submit">Отправить в Telegram</button>
+    </form>
+  );
+}

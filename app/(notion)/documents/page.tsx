@@ -1,8 +1,8 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
 import { api } from "@/convex/_generated/api";
-import { useMutation } from "convex/react";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
 import { PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner"
@@ -13,7 +13,7 @@ const {user} = useUser();
 const create = useMutation(api.documents.create);
 
 const onCreate = () => {
-    const promise = create({ title: "Без названия" })
+    const promise = create({ title: "Не известно" })
 
     toast.promise(promise, {
         loading: "Создание новой заметки...",

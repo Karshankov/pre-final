@@ -12,9 +12,19 @@ const guestRoutes = [
     href: '/',
   },
   {
+    icon: Layout,
+    label: 'Главная',
+    href: '/cher',
+  },
+  {
     icon: Compass,
     label: 'Лекции',
     href: '/search',
+  },
+  {
+    icon: Laptop,
+    label: 'Практические',
+    href: '/searchLab',
   },
   {
     icon: NotebookText,
@@ -38,6 +48,11 @@ const teacherRoutes = [
     icon: Laptop,
     label: 'Практические',
     href: '/teacher/labs',
+  },
+  {
+    icon: ClipboardPenLine,
+    label: 'Тесты',
+    href: '/teacher/quiz',
   },
   {
     icon: UserRoundCog,

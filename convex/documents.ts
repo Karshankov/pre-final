@@ -9,8 +9,9 @@ export const getSidebar = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
+    console.log(identity);
 
-    if (!identity) {
+    if (identity === null) {
       throw new Error("Not authenticated");
     }
 

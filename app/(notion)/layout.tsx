@@ -12,11 +12,12 @@ const NotionLayout = ({ children }: { children: React.ReactNode }) => {
 
 
   return (
-    //ТУТ был провайдер
+    <ConvexClientProvider>
     <div className="h-full flex">
       <Navigation />
       <main className="flex-1 h-full overflow-y-auto">{children}</main>
     </div>
+    </ConvexClientProvider>
   );
 };
 
