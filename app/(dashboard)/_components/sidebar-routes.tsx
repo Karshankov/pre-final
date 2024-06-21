@@ -12,11 +12,6 @@ const guestRoutes = [
     href: '/',
   },
   {
-    icon: Layout,
-    label: 'Главная',
-    href: '/cher',
-  },
-  {
     icon: Compass,
     label: 'Лекции',
     href: '/search',

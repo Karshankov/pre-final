@@ -10,6 +10,10 @@ export default async function Dashboard() {
   if (!userId) {
     return redirect("/");
   }
+  //Переадресация, если нет доступа(роли)
+  // if (userId === 'user_2chOH3vPpd3tLJzgx5cbydpfo7J'){
+  //   return redirect("/401")
+  // }
 
   const { completedCourses, coursesInProgress } = await getDashboardCourses(
     userId

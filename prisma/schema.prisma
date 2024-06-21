@@ -1,59 +1,66 @@
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-  relationMode =  "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 model Course {
-  id String @id @default(uuid())
-  userId String
-  title String @db.Text
+  id          String  @id @default(uuid())
+  userId      String
+  title       String  @db.Text
   description String? @db.Text
-  imageUrl String? @db.Text
-  // price Float?
+  imageUrl    String? @db.Text
   isPublished Boolean @default(false)
 
   categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
 
   chapters    Chapter[]
   attachments Attachment[]
-  
-  
-  
-  
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-   @@index([categoryId])
-   @@fulltext([title])
-
+  @@index([categoryId])
+  @@fulltext([title])
 }
 
+//Лабы-----------------------------------------------------------------------------
+model Labs {
+  id          String  @id @default(uuid())
+  userId      String
+  title       String  @db.Text
+  description String? @db.Text
+  imageUrl    String? @db.Text
+  isPublished Boolean @default(false)
+}
 
+model AttachmentLabs {
+  id   String @id @default(uuid())
+  name String
+  url  String @db.Text
+}
 
+//Лабы-----------------------------------------------------------------------------
 
 model Category {
-  id String @id @default(uuid())
-  name String @unique
+  id      String   @id @default(uuid())
+  name    String   @unique
   courses Course[]
 }
 
-
 model Attachment {
-  id String @id @default(uuid())
+  id   String @id @default(uuid())
   name String
-  url String @db.Text
+  url  String @db.Text
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -82,7 +89,22 @@ model Chapter {
   @@index([courseId])
 }
 
-model MuxData { //плеер видео
+model Tests {
+  id        String  @id @default(uuid())
+  title     String
+  questions String
+  answer1   String
+  answer2   String
+  answer3   String?
+  answer4   String?
+
+  
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MuxData {
   id         String  @id @default(uuid())
   assetId    String
   playbackId String?
@@ -91,7 +113,7 @@ model MuxData { //плеер видео
   chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
-model UserProgress { //прогресс пользователя по прохождению лекций
+model UserProgress {
   id     String @id @default(uuid())
   userId String
 
@@ -103,7 +125,6 @@ model UserProgress { //прогресс пользователя по прохо
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([chapterId])
   @@unique([userId, chapterId])
-  
+  @@index([chapterId])
 }
