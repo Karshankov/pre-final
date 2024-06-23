@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       return new NextResponse('Вы не авторизованны', { status: 401 });
     }
 
-    const course = await db.course.create({
+    const course = await db.labs.create({
       data: {
         userId,
         title,

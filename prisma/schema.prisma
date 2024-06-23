@@ -38,13 +38,46 @@ model Labs {
   description String? @db.Text
   imageUrl    String? @db.Text
   isPublished Boolean @default(false)
+
+  attachments AttachmentLabs[]
+  chapters    ChapterLabs[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@fulltext([title])
 }
 
 model AttachmentLabs {
-  id   String @id @default(uuid())
-  name String
-  url  String @db.Text
+  id     String @id @default(uuid())
+  name   String
+  url    String @db.Text
+  labsId String
+  labs   Labs   @relation(fields: [labsId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([labsId])
 }
+
+model ChapterLabs {
+  id          String  @id @default(uuid())
+  title       String
+  description String? @db.Text
+  videoUrl    String? @db.Text
+  position    Int
+  isPublished Boolean @default(false)
+
+  labsId String
+  labs   Labs   @relation(fields: [labsId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([labsId])
+}
+
 
 //Лабы-----------------------------------------------------------------------------
 
@@ -97,8 +130,6 @@ model Tests {
   answer2   String
   answer3   String?
   answer4   String?
-
-  
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

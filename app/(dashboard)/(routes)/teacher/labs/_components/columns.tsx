@@ -1,6 +1,6 @@
 "use client"
 
-import { Course } from "@prisma/client";
+import { Labs } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react"
 
@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 
-export const columns: ColumnDef<Course>[] = [
+export const columns: ColumnDef<Labs>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => {
@@ -25,7 +25,7 @@ export const columns: ColumnDef<Course>[] = [
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Название лекции
+            Название работы
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         )

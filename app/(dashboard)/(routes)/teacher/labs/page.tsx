@@ -10,7 +10,7 @@ const CoursesPage = async () => {
     return redirect("/");
   }
 
-  const courses = await db.course.findMany({
+  const labs = await db.labs.findMany({
     where: {
       userId,
     },
@@ -21,7 +21,7 @@ const CoursesPage = async () => {
 
   return (
     <div className="p-6">
-      <DataTable columns={columns} data={courses} />
+      <DataTable columns={columns} data={labs} />
     </div>
   );
 };

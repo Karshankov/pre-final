@@ -57,17 +57,17 @@ export function DataTable<TData, TValue>({
     <div>
         <div className="flex items-center py-4 justify-between">
         <Input
-          placeholder="Поиск лекции..."
+          placeholder="Поиск работы..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
-        <Link href="/teacher/create">
+        <Link href="/teacher/createLabs">
           <Button>
             <PlusCircle className="h-4 w-4 mr-2"/>
-            Новая лекция
+            Новая работа
           </Button>
         </Link>
       </div>
@@ -108,7 +108,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                Лекции не найдены
+                Работы не найдены
               </TableCell>
             </TableRow>
           )}
